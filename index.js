@@ -48,8 +48,9 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+function processLength(list, callback) {
+ 
+  return  callback(list.length);
 }
 
 /**
@@ -66,8 +67,8 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+function processLastItem(stringList, callback) {
+   return callback(stringList[stringList.length-1]);
 }
 
 /**
@@ -88,8 +89,9 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
  * should return 994.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(num1,num2,callback) {
+  let num = num1+num2;
+  return callback(num);
 }
 
 /**
@@ -110,8 +112,9 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(num1,num2,callback) {
+  let num = num1*num2;
+  return callback(num);
 }
 
 /**
@@ -132,9 +135,14 @@ function processProduct(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
-}
+function processDuplicateFree(List,callback) {
+    function onlyUnique(value, index, self) { 
+         return self.indexOf(value) === index;
+     }
+
+    var unique = List.filter( onlyUnique );
+       return callback(unique);
+     }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -155,8 +163,11 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
-  /* code here */
+function lowerCaseStrings(strings) {
+  return   strings.forEach((arritem)=>{
+    return arritem.toLowerCase();
+    
+  });
 }
 
 /**
@@ -174,8 +185,16 @@ function lowerCaseStrings(/* code here */) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(array) {
+  const map1 = array.map((item)=> {
+    if (item=="apple"){
+      return true;
+    }else{
+      return false;
+    };
+    
+  });
+  return map1;
 }
 
 /**
@@ -194,8 +213,17 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
-  /* code here */
+function removeApple(array) {
+   
+  const map1 =[];
+  
+  array.map((item)=> {
+    if (item !=='apple'){
+      map1.push(`${item}`);
+    };
+    
+  });
+  return map1;
 }
 
 /**
@@ -213,9 +241,18 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
-  /* code here */
-}
+function stringSmash(array) {
+  
+  const map1 =array.reduce((item) => {
+    var var1 ="" ;
+    for (let i=0;i < array.length-1 ;i++){
+      return var1 = var1 +array[i];
+    }
+  } );
+  return var1;
+    
+  }
+
 
 // A local community center is holding a fund raising 5k fun run and has invited
 // 50 small businesses to make a small donation on their behalf for some much needed
